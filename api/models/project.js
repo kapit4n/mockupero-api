@@ -1,4 +1,13 @@
+/**
+ * Project.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
+
 module.exports = {
+
+    connection: 'mongo',
     attributes: {
         // Primitive attributes
         name: {
@@ -22,12 +31,12 @@ module.exports = {
             via: 'project'
         },
         members: {
-          collection: 'Member',
-          via: 'project'
+            collection: 'Member',
+            via: 'project'
         },
         requirements: {
-          collection: 'Requirement',
-          via: 'project'
+            collection: 'Requirement',
+            via: 'project'
         }
     }
 };

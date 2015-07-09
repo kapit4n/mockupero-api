@@ -35,7 +35,8 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  'get /me': 'MyController.like'
+  'get /projects': 'ProjectController.getAll',
+  'post /project': 'ProjectController.create'
 
   /***************************************************************************
   *                                                                          *

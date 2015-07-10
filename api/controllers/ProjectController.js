@@ -8,7 +8,7 @@
 module.exports = {
     create: function(req, res) {
         var params = req.params.all()
-        Project.create({
+        project.create({
             name: 'project name'
         }).exec(function createCB(err, created) {
             return res.json({
@@ -19,7 +19,7 @@ module.exports = {
     },
 
     getAll: function(req, res) {
-        Project.find({
+        project.find({
             name: {
                 'contains': 'name'
             }

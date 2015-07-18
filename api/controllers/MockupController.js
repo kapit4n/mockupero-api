@@ -1,7 +1,7 @@
 /**
- * ProjectController
+ * MockupController
  *
- * @description :: Server-side logic for managing projects
+ * @description :: Server-side logic for managing mockups
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 

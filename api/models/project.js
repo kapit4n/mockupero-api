@@ -7,7 +7,6 @@
 
 module.exports = {
 
-    connection: 'mongo',
     attributes: {
         // Primitive attributes
         name: {

@@ -34,14 +34,7 @@ module.exports.routes = {
 
     '/': {
         view: 'homepage'
-    },
-    'get /projects': {
-        controller: 'ProjectController',
-        action: 'getAll',
-        cors: true
-    },
-    'post /project': 'ProjectController.create'
-
+    }
     /***************************************************************************
      *                                                                          *
      * Custom routes here...                                                    *

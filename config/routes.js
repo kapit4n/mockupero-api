@@ -34,7 +34,8 @@ module.exports.routes = {
 
     '/': {
         view: 'homepage'
-    }
+    },
+    'GET /project/count': 'ProjectController.count'
     /***************************************************************************
      *                                                                          *
      * Custom routes here...                                                    *

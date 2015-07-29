@@ -7,7 +7,12 @@
 
 module.exports = {
     count: function(req, res) {
-        project.count({}).exec(function(err, num) {
+        var params = req.params.all();
+        project.count({
+            name: {
+                'contains': params.name
+            }
+        }).exec(function(err, num) {
             return res.json({
                 "count": num
             });

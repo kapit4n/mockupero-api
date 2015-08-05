@@ -21,6 +21,10 @@ module.exports = {
             type: 'string',
             defaultsTo: ''
         },
+        imgToShow: {
+            type: 'string',
+            defaultsTo: 'http://blogs.atlassian.com/news/2009/09/10/SimpleLoginScreen-thumb-250x179.png'
+        },
         project: {
             model: 'project'
         },

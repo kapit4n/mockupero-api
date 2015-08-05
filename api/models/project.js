@@ -25,6 +25,14 @@ module.exports = {
             type: 'string',
             defaultsTo: 'Design is the creation of a plan or convention for the construction of an object or a system (as in architectural blueprints, engineering drawings, business ...'
         },
+        imgToShow: {
+            type: 'string',
+            defaultsTo: 'Design is the creation of a plan or convention for the construction of an object or a system (as in architectural blueprints, engineering drawings, business ...'
+        },
+        description: {
+            type: 'string',
+            defaultsTo: 'Design is the creation of a plan or convention for the construction of an object or a system (as in architectural blueprints, engineering drawings, business ...'
+        },
         mockups: {
             collection: 'mockup',
             via: 'project'

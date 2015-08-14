@@ -38,11 +38,11 @@ module.exports = {
             via: 'project'
         },
         members: {
-            collection: 'Member',
+            collection: 'projectShare',
             via: 'project'
         },
         requirements: {
-            collection: 'Requirement',
+            collection: 'requirement',
             via: 'project'
         }
     }

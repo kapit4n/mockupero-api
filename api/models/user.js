@@ -5,9 +5,9 @@ module.exports = {
             type: 'string',
             defaultsTo: ''
         },
-        members: {
-          collection: 'Member',
-          via: 'user'
-        }
+        projects: {
+            collection: 'projectShare',
+            via: 'user'
+        },
     }
 };

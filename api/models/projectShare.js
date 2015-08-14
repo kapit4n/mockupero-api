@@ -14,6 +14,9 @@ module.exports = {
         },
         user: {
             model: 'user'
+        },
+        permission: {
+            model: 'permission'
         }
 
     }

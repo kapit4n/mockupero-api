@@ -7,7 +7,7 @@
  * This is handy in situations where the sails CLI is not relevant or useful.
  *
  * For example:
- *   => `node app.js`
+ *   => `node app.js`loa
  *   => `forever start app.js`
  *   => `node debug app.js`
  *   => `modulus deploy`

@@ -35,7 +35,7 @@ module.exports.routes = {
     '/': {
         view: 'homepage'
     },
-    'GET /project/count': 'ProjectController.count'
+    'GET /project/count': 'ProjectController.count',
     /***************************************************************************
      *                                                                          *
      * Custom routes here...                                                    *
@@ -45,5 +45,12 @@ module.exports.routes = {
      * for configuration options and examples.                                  *
      *                                                                          *
      ***************************************************************************/
+
+     // Authentication routes
+      '/logout': 'AuthController.logout',
+      'POST /login': 'AuthController.callback',
+      'POST /login/:action': 'AuthController.callback',
+      'POST /auth/local': 'AuthController.callback',
+      'POST /auth/local/:action': 'AuthController.callback'
 
 };

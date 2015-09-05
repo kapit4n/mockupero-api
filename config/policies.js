@@ -34,6 +34,15 @@ module.exports.policies = {
   * and its actions                                                          *
   *                                                                          *
   ***************************************************************************/
+
+  '*': [ 'authenticated' ],
+  // Auth Controller
+  AuthController: {
+    '*':              ['passport'],
+    'checkPassword':  ['authenticated']
+  },
+
+
 	// RabbitController: {
 
 		// Apply the `false` policy as the default for all of RabbitController's actions
@@ -48,4 +57,5 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+
 };

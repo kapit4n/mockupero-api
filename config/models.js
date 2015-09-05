@@ -17,7 +17,8 @@ module.exports.models = {
   * connections (see `config/connections.js`)                                *
   *                                                                          *
   ***************************************************************************/
-  connection: 'mongodb1'
+  connection: 'someMongodbServer',
+  migrate: 'alter'
 
   /***************************************************************************
   *                                                                          *

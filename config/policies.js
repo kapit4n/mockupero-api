@@ -35,10 +35,10 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': [ 'authenticated' ],
+  '/login': [ 'authenticated' ],// put it to * if you want all paged auth required
   // Auth Controller
   AuthController: {
-    '*':              ['passport'],
+    '*':              ['passport'], 
     'checkPassword':  ['authenticated']
   },
 

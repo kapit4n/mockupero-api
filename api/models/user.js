@@ -10,6 +10,14 @@ var _ = require('lodash');
  */
 module.exports = _.merge(_.cloneDeep(require('../base/Model')), {
   attributes: {
+    name: {
+        type: 'string',
+        defaultsTo: ''
+    },
+    projects: {
+        collection: 'projectShare',
+        via: 'user'
+    },
     username: {
       type: 'string',
       unique: true
@@ -61,28 +69,6 @@ module.exports = _.merge(_.cloneDeep(require('../base/Model')), {
     requestLogs: {
       collection: 'RequestLog',
       via: 'user'
-    },
-
-    // Below are relations to another objects via generic 'createdUser' and 'updatedUser' properties
-
-    // Authors
-    //createdAuthors: {
-    //  collection: 'Author',
-    //  via: 'createdUser'
-    //},
-    //updatedAuthors: {
-    //  collection: 'Author',
-    //  via: 'updatedUser'
-    //},
-
-    // Books
-    //createdBooks: {
-    //  collection: 'Book',
-    //  via: 'createdUser'
-    //},
-    //updatedBooks: {
-    //  collection: 'Book',
-    //  via: 'updatedUser'
-    //}
+    }
   }
 });

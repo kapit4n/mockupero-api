@@ -30,10 +30,6 @@ module.exports = {
         },
         feature: {
           model: 'feature'
-        },
-        members: {
-          collection: 'Member',
-          via: 'mockup'
         }
     }
 };

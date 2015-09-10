@@ -35,7 +35,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '/login': [ 'authenticated' ],// put it to * if you want all paged auth required
+  '/hello': [ 'authenticated' ],
   // Auth Controller
   AuthController: {
     '*':              ['passport'], 
@@ -57,5 +57,7 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+
+
 
 };

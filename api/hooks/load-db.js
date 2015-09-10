@@ -27,7 +27,7 @@ module.exports = function hook(sails) {
 
             var _ = require('lodash');
             
-            var conn = sails.config.connections.someMongodbServer.database;
+            var conn = sails.config.connections.mongo.database;
             var fixtures = require('pow-mongodb-fixtures').connect(conn);
 
             //File (loads content from data.js file)

@@ -1,11 +1,12 @@
+'use strict';
+
+var _ = require('lodash');
+
 /**
  * UserController
- *
- * @description :: Server-side logic for managing users
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+*
+ * @description :: Server-side logic for managing Users
+ * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-
-module.exports = {
-	
-};
-
+module.exports = _.merge(_.cloneDeep(require('../base/Controller')), {
+});

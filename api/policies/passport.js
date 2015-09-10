@@ -1,4 +1,6 @@
 /**
+
+
  * Passport Middleware
  *
  * Policy for Sails that initializes Passport.js and as well as its built-in
@@ -21,6 +23,11 @@
  * @param {Object}   res
  * @param {Function} next
  */
+
+ 'use strict';
+
+var passport = require('passport');
+
 module.exports = function (req, res, next) {
   sails.log.verbose(__filename + ':' + __line + ' [Policy.passport() called]');
   // Initialize Passport

@@ -157,6 +157,8 @@ module.exports.blueprints = {
   *                                                                           *
   ****************************************************************************/
 
-  defaultLimit: 10
+  defaultLimit: 10,
+
+  mirror: true
 
 };

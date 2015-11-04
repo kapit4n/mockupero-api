@@ -6,6 +6,11 @@
  */
 
 module.exports = {
-	
+	getRoomsList: function(req, res) {
+	    var roomNames = JSON.stringify(sails.sockets.rooms());
+	    res.json({
+	      message: 'A list of all the rooms: '+roomNames
+	    });
+	}
 };
 

@@ -5,41 +5,6 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 module.exports = {
-    loginX: function(req, res) {
-        username_val = req.param('username');
-        result = '';
-        user.find().where({
-            username: username_val
-        }).exec(function(err1, foundUser) {
-            if (err1) {
-                return res.send({
-                    success: false
-                });
-            } else {
-                LoginLog.find().where({
-                    identifier: username_val
-                }).exec(function(err, found) {
-                    if (err) {
-                        result = {
-                            success: false
-                        }
-                        return res.send(result);
-                    } else {
-                        while (found.length) {
-                            hello = found.pop();
-                            result += hello.identifier;
-                            hello.destroy();
-                        }
-                        result.success = true;
-                        result.userId = foundUser.id;
-                        return res.send(result);
-                    }
-
-                });
-            }
-
-        });
-    },
     login: function(req, res) {
         username_val = req.param('username');
         user.find().where({

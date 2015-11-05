@@ -127,7 +127,7 @@ module.exports.sockets = {
   afterDisconnect: function(session, socket, cb) {
     // By default: do nothing.
     console.log('after disconnect function');
-    console.log(socket);
+    //console.log(socket);
     return cb();
   },
 

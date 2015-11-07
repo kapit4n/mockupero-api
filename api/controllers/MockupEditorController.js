@@ -14,6 +14,9 @@ module.exports = {
                 console.log('Error to query User');
                 console.log(err1);
             } else {
+                if (foundUser.length == 0) {
+                    return res.send('There is not user with this username: ' + username_val);
+                }
                 console.log('Success user query');
                 console.log(foundUser.length);
                 MockupEditor.find().where({

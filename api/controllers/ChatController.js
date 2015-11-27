@@ -30,7 +30,7 @@ module.exports = {
                 });
         } else if (req.isSocket) {
             // subscribe client to model changes 
-            //Chat.watch(req.socket);
+            Chat.watch(req.socket);
             sails.sockets.join(req.socket, roomName);
             var allRooms = JSON.stringify(sails.sockets.rooms());
             var socketRooms = JSON.stringify(sails.sockets.socketRooms(req.socket));

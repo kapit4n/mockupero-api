@@ -6,7 +6,13 @@
  */
 module.exports = {
     addConv: function(req, res) {
-        var data_from_client = req.params.all();
+        var data_from_client;
+        var roomName;
+        data_from_client = req.params.all();
+        console.log(data_from_client);
+        if (data_from_client && data_from_client['roomName']) {
+            roomName = data_from_client['roomName'];
+        }
 
         if (req.isSocket && req.method === 'POST') {
 
@@ -20,15 +26,19 @@ module.exports = {
                         message: data_from_client.message,
                         user: data_from_client.user
                     });
-                    sails.sockets.broadcast('Chat', {
-                        value: data_from_client
-                    });
                     return res.send('created');
                 });
         } else if (req.isSocket) {
             // subscribe client to model changes 
-            Chat.watch(req.socket);
+            //Chat.watch(req.socket);
+            sails.sockets.join(req.socket, roomName);
+            var allRooms = JSON.stringify(sails.sockets.rooms());
+            var socketRooms = JSON.stringify(sails.sockets.socketRooms(req.socket));
+            var subscribers = sails.sockets.subscribers(roomName);
             console.log('User subscribed to ' + req.socket.id);
+            console.log('socketRooms: ' + socketRooms);
+            console.log('allRooms: ' + allRooms);
+            console.log('subscribers: ' + subscribers);
             return res.send('User subscribed to');
         }
     }

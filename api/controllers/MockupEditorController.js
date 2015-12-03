@@ -50,8 +50,13 @@ module.exports = {
                                     return res.send('failed');
                                 }
                                 console.log('The status of the MockupEditor is ' + updated[0].online);
-                                MockupEditor.publishUpdate(updated[0].id, {online: updated[0].online, username: updated[0].username});
-                                sails.sockets.broadcast('MockupEditor', { value: updated[0] });
+                                MockupEditor.publishUpdate(updated[0].id, {
+                                    online: updated[0].online,
+                                    username: updated[0].username
+                                });
+                                sails.sockets.broadcast('MockupEditor', {
+                                    value: updated[0]
+                                });
                                 return res.send(updated[0]);
                             });
                             console.log('The record has been updated');
@@ -62,13 +67,16 @@ module.exports = {
         });
     },
     logout: function(req, res) {
-        if(req.isSocket) {
+        if (req.isSocket) {
             username_val = req.param('username');
             console.log(username_val);
             user.find().where({
                 username: username_val
             }).exec(function(err1, foundLogin) {
-                if (foundLogin.length > 0) {
+                if (err1) {
+                    console.log('Error to query User');
+                    console.log(err1);
+                } else if (foundLogin.length > 0) {
                     MockupEditor.update({
                         userId: foundLogin[0].id
                     }, {
@@ -78,13 +86,14 @@ module.exports = {
                             console.log('Error to put logout the user');
                             return res.send('error');
                         }
-                        console.log('The status of the MockupEditor is' + updated[0].online);
-                        console.log(updated[0].id);
-                        MockupEditor.publishUpdate(updated[0].id, {online: false, username: updated[0].username});
-                        sails.sockets.broadcast('MockupEditor', { value: updated[0] });
+                        MockupEditor.publishUpdate(updated[0].id, {
+                            offline: !updated[0].online,
+                            username: updated[0].username
+                        });
+                        ////sails.sockets.broadcast('MockupEditor', { value: updated[0] });
                         return res.send(updated[0]);
                     });
-                }else {
+                } else {
                     return res.send('');
                 }
             });

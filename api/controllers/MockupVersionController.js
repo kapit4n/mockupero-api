@@ -15,7 +15,8 @@ module.exports = {
                     MockupVersion.publishCreate({
                         id: created1.id,
                         mockupId: created1.mockupId,
-                        number: created1.number
+                        number: created1.number,
+                        username: created1.username
                     });
                     return res.send('created a version');
                 });

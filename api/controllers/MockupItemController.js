@@ -5,20 +5,25 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+fs = require('fs');
+sys = require('sys');
 module.exports = {
     uploadAvatar: function(req, res) {
-    	console.log("upload avatar is called");
-    	console.log();
-    	console.log(req.body);
-        req.file('file').upload({
-		  dirname: require('path').resolve(sails.config.appPath, '/assets/images')
-		},function (err, uploadedFiles) {
-		  if (err) return res.negotiate(err);
-
-		  return res.json({
-		    message: uploadedFiles.length + ' file(s) uploaded successfully!'
-		  });
-		});
+        var params = req.params.all();
+        var img = params.img;
+        var base64DataAssets = img.replace(/^data:image\/png;base64,/, "");
+        var base64DataPublic = img.replace(/^data:image\/png;base64,/, "");
+        require("fs").writeFile('assets/images/' + params.mockupId + ".png", base64DataAssets, 'base64', function(err) {
+          if (err) {
+            console.log(err);
+          }
+        });
+        require("fs").writeFile('.tmp/public/images/' + params.mockupId + ".png", base64DataPublic, 'base64', function(err) {
+          if (err) {
+            console.log(err);
+          }
+        });
+        return res.send('uploaded');
     }
 };
 

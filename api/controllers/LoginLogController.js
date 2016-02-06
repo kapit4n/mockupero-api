@@ -48,7 +48,7 @@ module.exports = {
                                 }
                                 console.log('The status of the loginLog is ' + updated[0].online);
                                 LoginLog.publishUpdate(updated[0].id, {online: updated[0].online, username: updated[0].username});
-                                sails.sockets.broadcast('loginLog', { value: updated[0] });
+                                //sails.sockets.broadcast('loginLog', { value: updated[0] });
                                 return res.send(updated[0]);
                             });
                             console.log('The record has been updated');
@@ -78,10 +78,10 @@ module.exports = {
                         console.log('The status of the loginLog is' + updated[0].online);
                         console.log(updated[0].id);
                         LoginLog.publishUpdate(updated[0].id, {online: false, username: updated[0].username});
-                        sails.sockets.broadcast('loginLog', { value: updated[0] });
+                        //sails.sockets.broadcast('loginLog', { value: updated[0] });
                         return res.send(updated[0]);
                     });
-                }else {
+                } else {
                     return res.send('');
                 }
             });

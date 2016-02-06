@@ -5,12 +5,36 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 module.exports = {
+    getSocketId: function(req, res) {
+        /*
+        by the way the Socket Id changes
+        qY4B-Q2g8G9vgh4mAAAB
+        5eXGMnKB2U0G-F78AAAC
+        */
+        return res.send(sails.sockets.id(req.socket));
+    },
+    getEditors: function(req, res) {
+        var data_from_client;
+        var roomName;
+        data_from_client = req.params.all();
+        if (data_from_client && data_from_client['roomName']) {
+            roomName = data_from_client['roomName'];
+        } else {
+            roomName = 'General_Mockup_Room';
+        }
+        var subscribers = sails.sockets.subscribers(roomName);
+        // get all mockupEditor that have that socket id from that roomName and return them
+        // remember that when we reload the socket id will be removed
+        return res.send(subscribers);
+    },
+
     editors: function(req, res) {
 
         var data_from_client;
         var roomName;
         data_from_client = req.params.all();
         console.log(data_from_client);
+        var socketId = sails.sockets.id(req.socket);
 
         if (data_from_client && data_from_client['roomName']) {
             roomName = data_from_client['roomName'];
@@ -49,7 +73,9 @@ module.exports = {
                                 MockupEditor.create({
                                     userId: foundUser[0].id,
                                     username: foundUser[0].username,
-                                    online: true
+                                    online: true,
+                                    socketId: socketId,
+                                    roomName: roomName
                                 }).exec(function(err3, createdLog) {
                                     console.log(err3);
                                     console.log(createdLog);
@@ -59,7 +85,9 @@ module.exports = {
                                 MockupEditor.update({
                                     id: foundLogin[0].id
                                 }, {
-                                    online: true
+                                    online: true,
+                                    socketId: socketId,
+                                    roomName: roomName
                                 }).exec(function afterwards(err, updated) {
 
                                     if (err) {
@@ -69,7 +97,8 @@ module.exports = {
                                     console.log('The status of the MockupEditor is ' + updated[0].online);
                                     MockupEditor.publishUpdate(updated[0].id, {
                                         online: updated[0].online,
-                                        username: updated[0].username
+                                        username: updated[0].username,
+                                        socketId: socketId
                                     });
                                     sails.sockets.broadcast('MockupEditor', {
                                         value: updated[0]
@@ -87,8 +116,6 @@ module.exports = {
             sails.sockets.join(req.socket, roomName);
             return res.send('User subscribed to ' + roomName);
         }
-
-        
     },
     logout: function(req, res) {
         if (req.isSocket) {

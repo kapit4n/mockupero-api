@@ -109,7 +109,7 @@ module.exports.sockets = {
    beforeConnect: function(handshake, cb) {
      // `true` allows the connection
      console.log('before connect function');
-     
+     console.log('handshake' + handshake);
      return cb(null, true);
   
      // (`false` would reject the connection)
@@ -126,8 +126,24 @@ module.exports.sockets = {
   ***************************************************************************/
   afterDisconnect: function(session, socket, cb) {
     // By default: do nothing.
-    console.log('after disconnect function');
-    //console.log(socket);
+    console.log('After disconnect function');
+    console.log(socket.id);
+    SocketManager.find({}).exec(function(err, found) {
+      console.log('This is on disconnect');
+      if (found[0].socket_type == 'MockupEditor') {
+        // Remove the mockupEditor here
+        MockupEditor.find({socketId: 'SocketId001'}).exec(function(err1, mockupEditorRow) {
+          mockupEditorRow[0].remove();
+        });
+      }
+    });
+    /*
+      SocketManager.find({socketId: socket.id}, function() {
+        MockupEditor.update({socketId: socket.id}, {online: false}, function(result) {
+          MockupEditor.PublishUpdate(result.id, {online: false});
+        })
+      });
+    */
     return cb();
   },
 

@@ -128,15 +128,37 @@ module.exports.sockets = {
     // By default: do nothing.
     console.log('After disconnect function');
     console.log(socket.id);
+    
     SocketManager.find({}).exec(function(err, found) {
       console.log('This is on disconnect');
       if (found[0].socket_type == 'MockupEditor') {
         // Remove the mockupEditor here
-        MockupEditor.find({socketId: 'SocketId001'}).exec(function(err1, mockupEditorRow) {
-          mockupEditorRow[0].remove();
+        MockupEditor.find({socketId: socket.id}).exec(function(err1, mockupEditorRow) {
+          if (err1) {
+            console.log('Error in disconnect');
+          }
+          else {
+            console.log('Need to remove' );
+            if (mockupEditorRow.length > 0) {
+              MockupEditor.destroy({
+                id: [ mockupEditorRow[0].id]
+              }).exec(function (err){
+                if (err) {
+                  console.log('Error to remove');
+                } else {
+                  console.log('Deleted');
+                }
+              });
+              //mockupEditorRow[0].remove();
+            } else {
+              console.log('The array is not valid')
+              console.log(mockupEditorRow);
+            }
+          }
         });
       }
     });
+
     /*
       SocketManager.find({socketId: socket.id}, function() {
         MockupEditor.update({socketId: socket.id}, {online: false}, function(result) {

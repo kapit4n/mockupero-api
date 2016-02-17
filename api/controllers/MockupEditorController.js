@@ -77,8 +77,13 @@ module.exports = {
                                     socketId: socketId,
                                     roomName: roomName
                                 }).exec(function(err3, createdLog) {
-                                    console.log(err3);
-                                    console.log(createdLog);
+                                    if (err3) {
+                                        console.log('Error to create the MockupEditor');
+                                        console.log(err3);
+                                    } else {
+                                        console.log('MockupEditor created  socketId ' + socketId);
+                                        console.log(createdLog);
+                                    }
                                     return res.send(createdLog[0]);
                                 });
                             } else {
@@ -91,8 +96,10 @@ module.exports = {
                                 }).exec(function afterwards(err, updated) {
 
                                     if (err) {
-                                        console.log('Error to put online the user');
+                                        console.log('Error to update MockupEditor');
                                         return res.send('failed');
+                                    } else {
+                                        console.log('MockupEditor Updated: socketId ' + socketId);
                                     }
                                     console.log('The status of the MockupEditor is ' + updated[0].online);
                                     MockupEditor.publishUpdate(updated[0].id, {

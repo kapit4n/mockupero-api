@@ -129,9 +129,12 @@ module.exports.sockets = {
     console.log('After disconnect function');
     console.log(socket.id);
     
-    SocketManager.find({}).exec(function(err, found) {
+    SocketManager.find({socketId: socket.id}).exec(function(err, found) {
       console.log('This is on disconnect');
-      if (found[0].socket_type == 'MockupEditor') {
+      console.log(found);
+      // this is to remove the record by type, here we will have /MockupEditor, /loginLog, mockupView
+      // also here we are going to control it by socketRoom, maybe sending in the publish
+      if (found[0].objectName == 'MockupEditor') {
         // Remove the mockupEditor here
         MockupEditor.find({socketId: socket.id}).exec(function(err1, mockupEditorRow) {
           if (err1) {
@@ -139,6 +142,7 @@ module.exports.sockets = {
           }
           else {
             console.log('Need to remove' );
+            // need to delete the icon shown in the header of the mockup design editor page
             if (mockupEditorRow.length > 0) {
               MockupEditor.destroy({
                 id: [ mockupEditorRow[0].id]
@@ -149,7 +153,6 @@ module.exports.sockets = {
                   console.log('Deleted');
                 }
               });
-              //mockupEditorRow[0].remove();
             } else {
               console.log('The array is not valid')
               console.log(mockupEditorRow);
@@ -159,13 +162,6 @@ module.exports.sockets = {
       }
     });
 
-    /*
-      SocketManager.find({socketId: socket.id}, function() {
-        MockupEditor.update({socketId: socket.id}, {online: false}, function(result) {
-          MockupEditor.PublishUpdate(result.id, {online: false});
-        })
-      });
-    */
     return cb();
   },
 

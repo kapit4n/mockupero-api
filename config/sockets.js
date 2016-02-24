@@ -108,8 +108,8 @@ module.exports.sockets = {
   ***************************************************************************/
    beforeConnect: function(handshake, cb) {
      // `true` allows the connection
-     console.log('before connect function');
-     console.log('handshake' + handshake);
+     //console.log(('before connect function');
+     //console.log(('handshake' + handshake);
      return cb(null, true);
   
      // (`false` would reject the connection)
@@ -126,36 +126,69 @@ module.exports.sockets = {
   ***************************************************************************/
   afterDisconnect: function(session, socket, cb) {
     // By default: do nothing.
-    console.log('After disconnect function');
-    console.log(socket.id);
+    //console.log(('After disconnect function');
+    //console.log((socket.id);
     
     SocketManager.find({socketId: socket.id}).exec(function(err, found) {
-      console.log('This is on disconnect');
-      console.log(found);
+      //console.log(('This is on disconnect');
+      //console.log((found);
+      if (err) {
+        return;
+      }
+      if (!found) {
+        return;
+      }
+      if (found.length == 0) {
+        return;
+      }
       // this is to remove the record by type, here we will have /MockupEditor, /loginLog, mockupView
       // also here we are going to control it by socketRoom, maybe sending in the publish
       if (found[0].objectName == 'MockupEditor') {
         // Remove the mockupEditor here
         MockupEditor.find({socketId: socket.id}).exec(function(err1, mockupEditorRow) {
           if (err1) {
-            console.log('Error in disconnect');
+            //console.log(('Error in disconnect');
           }
           else {
-            console.log('Need to remove' );
+            //console.log(('Need to remove' );
             // need to delete the icon shown in the header of the mockup design editor page
             if (mockupEditorRow.length > 0) {
               MockupEditor.destroy({
                 id: [ mockupEditorRow[0].id]
               }).exec(function (err){
                 if (err) {
-                  console.log('Error to remove');
+                  //console.log(('Error to remove');
                 } else {
-                  console.log('Deleted');
+                  //console.log(('Deleted');
                 }
               });
             } else {
-              console.log('The array is not valid')
-              console.log(mockupEditorRow);
+              //console.log(('The array is not valid')
+              //console.log((mockupEditorRow);
+            }
+          }
+        });
+      } else if (found[0].objectName == 'LoginLog') {
+        // Remove the mockupEditor here
+        LoginLog.find({socketId: socket.id}).exec(function(err1, loginLogRow) {
+          if (err1) {
+            //console.log(('Error in disconnect');
+          } else {
+            //console.log(('Need to remove' );
+            // need to delete the icon shown in the header of the mockup design editor page
+            if (loginLogRow.length > 0) {
+              LoginLog.destroy({
+                id: [ loginLogRow[0].id]
+              }).exec(function (err) {
+                if (err) {
+                  //console.log(('Error to remove');
+                } else {
+                  //console.log(('Deleted');
+                }
+              });
+            } else {
+              //console.log(('The array is not valid')
+              //console.log((loginLogRow);
             }
           }
         });

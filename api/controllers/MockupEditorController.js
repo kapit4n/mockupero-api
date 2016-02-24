@@ -81,8 +81,6 @@ module.exports = {
                                         console.log('Error to create the MockupEditor');
                                         console.log(err3);
                                     } else {
-                                        //console.log('MockupEditor created  socketId ' + socketId);
-                                        //console.log(createdLog);
                                         SocketManager.create(
                                             {socketId: socketId, objectName: 'MockupEditor'}).exec(
                                             function(err_sm, created_sm) {
@@ -110,7 +108,7 @@ module.exports = {
                                     } else {
                                         //console.log('MockupEditor Updated: socketId ' + socketId);
                                     }
-                                    // this source code is duplicated, remove the socketManager created
+                                    // this source code is duplicated, remove the socketManager created maybe notify that the 
                                     SocketManager.create(
                                             {socketId: socketId, objectName: 'MockupEditor'}).exec(
                                             function(err_sm, created_sm) {

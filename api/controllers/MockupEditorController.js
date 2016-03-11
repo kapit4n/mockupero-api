@@ -65,7 +65,7 @@ module.exports = {
                     }).exec(function(err2, foundLogin) {
                         if (err2) {
                             //console.log('Error to query MockupEditor');
-                            //console.log(err2);
+                            console.log(err2);
                         } else {
                             //console.log('Success MockupEditor query');
                             //console.log(foundLogin.length);
@@ -78,17 +78,15 @@ module.exports = {
                                     roomName: roomName
                                 }).exec(function(err3, createdLog) {
                                     if (err3) {
-                                        console.log('Error to create the MockupEditor');
                                         console.log(err3);
                                     } else {
+                                        MockupEditor.publishCreate(_.omit(createdLog, 'online'), req );
                                         SocketManager.create(
                                             {socketId: socketId, objectName: 'MockupEditor'}).exec(
                                             function(err_sm, created_sm) {
                                                 if (err_sm) {
                                                     console.log('Error to SocketManager creating');
                                                 }
-                                                console.log('created SocketManager');
-                                                console.log(created_sm)
                                             });
                                     }
                                     return res.send(createdLog[0]);
@@ -105,8 +103,6 @@ module.exports = {
                                     if (err) {
                                         //console.log('Error to update MockupEditor');
                                         return res.send('failed');
-                                    } else {
-                                        //console.log('MockupEditor Updated: socketId ' + socketId);
                                     }
                                     // this source code is duplicated, remove the socketManager created maybe notify that the 
                                     SocketManager.create(

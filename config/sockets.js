@@ -162,6 +162,10 @@ module.exports.sockets = {
                   //console.log(('Deleted');
                 }
               });
+              MockupEditor.publishUpdate(mockupEditorRow[0].id, {
+                            offline: !mockupEditorRow[0].online,
+                            username: mockupEditorRow[0].username
+                        });
             } else {
               //console.log(('The array is not valid')
               //console.log((mockupEditorRow);

@@ -14,6 +14,9 @@ module.exports = {
         user.find().where({
             username: username_val
         }).exec(function(err1, foundUser) {
+            if (foundUser.length == 0) {
+                return res.send('Not found user bb');
+            }
             if (err1) {
                 //console.log(('Error to query User');
                 //console.log((err1);

@@ -4,7 +4,7 @@ A aplication that serve the logic to manage the design of a software development
 
 
 ## Requirements
-* node js 6.1
+* node js 6
 * sails js
 
 ## Installation

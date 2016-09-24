@@ -8,7 +8,16 @@ A aplication that serve the logic to manage the design of a software development
 * sails js
 
 ## Installation
-* npm install
-* sails lift
 
-http://localhost:1337
+  1.  npm install
+  2.  mkdir data
+  3.  mongod --dbpath=data
+  4.  mongo
+  5.  db.createUser(
+      {
+        user: "accountUser",
+     pwd: "password",
+     roles: [ "readWrite", "dbAdmin" ]
+      })
+  6. sails lift
+

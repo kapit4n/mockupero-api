@@ -13,11 +13,13 @@ A aplication that serve the logic to manage the design of a software development
   2.  mkdir data
   3.  mongod --dbpath=data
   4.  mongo
-  5.  db.createUser(
-      {
+      db.createUser({
         user: "accountUser",
-     pwd: "password",
-     roles: [ "readWrite", "dbAdmin" ]
+        pwd: "password",
+        roles: [ 
+          "readWrite", 
+          "dbAdmin" 
+        ]
       })
-  6. sails lift
+  5. sails lift
 

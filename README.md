@@ -6,6 +6,7 @@ A aplication that serve the logic to manage the design of a software development
 ## Requirements
 * node js 6
 * sails js 0.12.4
+* MongoDB version: 2.6.5
 
 ## Installation
 
@@ -21,9 +22,8 @@ A aplication that serve the logic to manage the design of a software development
           "dbAdmin" 
         ]
       })
-  5. sails lift
 
 ## Run
 * sails lift
-* localhost:1773/
+* http://localhost:1773/
 

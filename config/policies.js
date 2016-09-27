@@ -35,6 +35,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
+  /*
   '/hello': [ 'authenticated' ],
   // Auth Controller
   AuthController: {
@@ -42,6 +43,13 @@ module.exports.policies = {
     'checkPassword':  ['authenticated']
   },
 
+  */
+  // '*': true,
+  '*': true,
+
+  'PostController': {
+    '*': 'isAuthenticated'
+  },
 
 	// RabbitController: {
 

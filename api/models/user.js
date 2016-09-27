@@ -1,63 +1,34 @@
-'use strict';
+var bcrypt = require('bcrypt');
 
-var _ = require('lodash');
-
-/**
- * User.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/#!documentation/models
- */
-module.exports = _.merge(_.cloneDeep(require('../base/Model')), {
-  attributes: {
-    name: {
-        type: 'string',
-        defaultsTo: ''
+module.exports = {
+    attributes: {
+        email: {
+            type: 'email',
+            required: true,
+            unique: true
+        },
+        password: {
+            type: 'string',
+            minLength: 6,
+            required: true
+        },
+        toJSON: function() {
+            var obj = this.toObject();
+            delete obj.password;
+            return obj;
+        }
     },
-    projects: {
-        collection: 'projectShare',
-        via: 'user'
-    },
-    username: {
-      type: 'string',
-      unique: true
-    },
-    email: {
-      type: 'email',
-      unique: true
-    },
-    firstName: {
-      type: 'string',
-      required: true
-    },
-    lastName: {
-      type: 'string'
-    },
-    admin: {
-      type: 'boolean',
-      defaultsTo: false
-    },
-
-    // Below is all specification for relations to another models
-
-    // Passport configurations
-    passports: {
-      collection: 'Passport',
-      via: 'user'
-    },
-    // Message objects that user has sent
-    messages: {
-      collection: 'Message',
-      via: 'user'
-    },
-    // Login objects that are attached to user
-    logins: {
-      collection: 'UserLogin',
-      via: 'user'
-    },
-    requestLogs: {
-      collection: 'RequestLog',
-      via: 'user'
+    beforeCreate: function(user, cb) {
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(user.password, salt, function(err, hash) {
+                if (err) {
+                    console.log(err);
+                    cb(err);
+                } else {
+                    user.password = hash;
+                    cb();
+                }
+            });
+        });
     }
-  }
-});
+};

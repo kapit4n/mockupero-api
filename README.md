@@ -25,5 +25,5 @@ A aplication that serve the logic to manage the design of a software development
 
 ## Run
 * sails lift
-* http://localhost:1773/
+* http://localhost:1337/
 

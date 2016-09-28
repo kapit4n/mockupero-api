@@ -4,11 +4,26 @@ A aplication that serve the logic to manage the design of a software development
 
 
 ## Requirements
-* node js 6.1
-* sails js
+* node js 6
+* sails js 0.12.4
+* MongoDB version: 2.6.5
 
 ## Installation
-* npm install
-* sails lift
 
-http://localhost:1337
+  1.  npm install
+  2.  mkdir data
+  3.  mongod --dbpath=data
+  4.  mongo
+      db.createUser({
+        user: "accountUser",
+        pwd: "password",
+        roles: [ 
+          "readWrite", 
+          "dbAdmin" 
+        ]
+      })
+
+## Run
+* sails lift
+* http://localhost:1773/
+

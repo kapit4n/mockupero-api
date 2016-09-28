@@ -37,17 +37,10 @@ module.exports.routes = {
     },
     'GET /project/count': 'ProjectController.count',
     'GET /project/projectPermission': 'ProjectController.projectPermission',
-  'get /login': {
-       view: 'login'
-  },
-
-  'post /login': 'AuthController.login',
-
-  '/logout': 'AuthController.logout',
-
-  'get /signup': {
-    view: 'signup'
-  }
+    'GET /login': {view: 'login'},
+    'POST /login': 'AuthController.login',
+    '/logout': 'AuthController.logout',
+    'GET /signup': {view: 'signup'}
     /***************************************************************************
      *                                                                          *
      * Custom routes here...                                                    *

@@ -11,7 +11,7 @@ module.exports = {
             socketId = sails.sockets.id(req.socket);
         }
         username_val = req.param('username');
-        user.find().where({
+        User.find().where({
             username: username_val
         }).exec(function(err1, foundUser) {
             if (foundUser.length == 0) {
@@ -69,7 +69,7 @@ module.exports = {
         if(req.isSocket) {
             username_val = req.param('username');
             //console.log((username_val);
-            user.find().where({
+            User.find().where({
                 username: username_val
             }).exec(function(err1, foundLoginList) {
                 if (foundLoginList.length > 0) {

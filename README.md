@@ -10,10 +10,10 @@ A aplication that serve the logic to manage the design of a software development
 
 ## Installation
 
-  1.  npm install
-  2.  mkdir data
-  3.  mongod --dbpath=data
-  4.  mongo
+* 1.  npm install
+* 2.  mkdir data
+* 3.  mongod --dbpath=data
+* 4.  mongo
       db.createUser({
         user: "accountUser",
         pwd: "password",
@@ -22,6 +22,10 @@ A aplication that serve the logic to manage the design of a software development
           "dbAdmin" 
         ]
       })
+* 5. mongo
+db.permission.insert( { can: "edit" } )
+      db.permission.insert( { can: "view" } )
+
 
 ## Run
 * sails lift

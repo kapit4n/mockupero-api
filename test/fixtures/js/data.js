@@ -1,4 +1,4 @@
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 var _ = require('lodash');
 
 var id = require('pow-mongodb-fixtures').createObjectId;

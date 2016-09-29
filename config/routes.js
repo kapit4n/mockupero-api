@@ -37,6 +37,10 @@ module.exports.routes = {
     },
     'GET /project/count': 'ProjectController.count',
     'GET /project/projectPermission': 'ProjectController.projectPermission',
+    'GET /login': {view: 'login'},
+    'POST /login': 'AuthController.login',
+    '/logout': 'AuthController.logout',
+    'GET /signup': {view: 'signup'}
     /***************************************************************************
      *                                                                          *
      * Custom routes here...                                                    *
@@ -48,10 +52,10 @@ module.exports.routes = {
      ***************************************************************************/
 
      // Authentication routes
-      '/logout': 'AuthController.logout',
+      /*'/logout': 'AuthController.logout',
       'POST /login': 'AuthController.callback',
       'POST /login/:action': 'AuthController.callback',
       'POST /auth/local': 'AuthController.callback',
-      'POST /auth/local/:action': 'AuthController.callback'
+      'POST /auth/local/:action': 'AuthController.callback'*/
 
 };

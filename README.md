@@ -25,6 +25,9 @@ A aplication that serve the logic to manage the design of a software development
 * 5. mongo
 db.permission.insert( { can: "edit" } )
       db.permission.insert( { can: "view" } )
+      
+## Run unit test
+mocha test/bootstrap.test.js test/integration/**/*.test.js
 
 
 ## Run

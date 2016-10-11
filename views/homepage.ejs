@@ -12,7 +12,7 @@ setTimeout(function sunrise () {
 
 <div class="default-page">
     <div class="header">
-        <h1 id="main-title" class="container"><%= __('A brand new app.') %></h1>
+        <h1 id="main-title" class="container"><%= __('Mockupero API') %></h1>
         <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
     </div>
     <div class="main container clearfix">
@@ -46,6 +46,108 @@ setTimeout(function sunrise () {
                         Dive in.
                     </h3>
                     <p>Blueprints are just the beginning.  You'll probably also want to learn how to customize your app's <a href="http://sailsjs.org/#!/documentation/concepts/Routes">routes</a>, set up <a href="http://sailsjs.org/#!/documentation/concepts/Policies">security policies</a>, configure your <a href="http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.connections.html">data sources</a>, and build custom <a target="_blank" href="http://sailsjs.org/#!/documentation/concepts/Controllers?q=actions">controller actions</a>. For more help getting started, check out the links on this page.</p>
+
+                </div>
+            </li>
+
+            <li class="clearfix">
+                <div class="step">
+                    <div class="sprite four"></div>
+                    <h3>
+                        Available API Endpoints in the MOCKUPERO API
+                    </h3>
+                    <ol>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/user"><code>/user</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of the users</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/project"><code>/project</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of projects</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/mockup"><code>/mockup</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of mockups</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/mockupItem"><code>/mockupItem</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of mockup details</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permission"><code>/permission</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of permissions</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/projectShare"><code>/projectShare</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the relation between user and project</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/mockupVersion"><code>/mockupVersion</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the mockup version list</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/loginLog"><code>/loginLog</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the login log list</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/project/count"><code>/project/count</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the total count of project</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/project/projectPermission"><code>/project/projectPermission</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the users that have the permission over a project</p>
+                            </article>
+                        </li>
+                    </ol>
 
                 </div>
             </li>

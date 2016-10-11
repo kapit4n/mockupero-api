@@ -13,6 +13,7 @@ module.exports = {
         */
         return res.send(sails.sockets.id(req.socket));
     },
+
     getEditors: function(req, res) {
         var data_from_client;
         var roomName;

@@ -19,7 +19,7 @@ module.exports = {
             }
             if (err1) {
                 //console.log(('Error to query User');
-                //console.log((err1);
+                console.error(err1);
             } else {
                 //console.log(('Success user query');
                 //console.log((foundUser.length);
@@ -28,7 +28,7 @@ module.exports = {
                 }).exec(function(err2, foundLogin) {
                     if (err2) {
                         //console.log(('Error to query loginLog');
-                        //console.log((err2);
+                        console.error(err2);
                     } else {
                         //console.log(('Success LoginLog query');
                         //console.log((foundLogin.length);

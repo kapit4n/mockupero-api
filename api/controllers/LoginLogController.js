@@ -11,7 +11,7 @@ module.exports = {
             socketId = sails.sockets.id(req.socket);
         }
         username_val = req.param('username');
-        user.find().where({
+        User.find().where({
             username: username_val
         }).exec(function(err1, foundUser) {
             if (foundUser.length == 0) {
@@ -19,7 +19,7 @@ module.exports = {
             }
             if (err1) {
                 //console.log(('Error to query User');
-                //console.log((err1);
+                console.error(err1);
             } else {
                 //console.log(('Success user query');
                 //console.log((foundUser.length);
@@ -28,7 +28,7 @@ module.exports = {
                 }).exec(function(err2, foundLogin) {
                     if (err2) {
                         //console.log(('Error to query loginLog');
-                        //console.log((err2);
+                        console.error(err2);
                     } else {
                         //console.log(('Success LoginLog query');
                         //console.log((foundLogin.length);
@@ -69,7 +69,7 @@ module.exports = {
         if(req.isSocket) {
             username_val = req.param('username');
             //console.log((username_val);
-            user.find().where({
+            User.find().where({
                 username: username_val
             }).exec(function(err1, foundLoginList) {
                 if (foundLoginList.length > 0) {

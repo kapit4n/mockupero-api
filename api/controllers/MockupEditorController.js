@@ -6,13 +6,9 @@
  */
 module.exports = {
     getSocketId: function(req, res) {
-        /*
-        by the way the Socket Id changes
-        qY4B-Q2g8G9vgh4mAAAB
-        5eXGMnKB2U0G-F78AAAC
-        */
         return res.send(sails.sockets.id(req.socket));
     },
+
     getEditors: function(req, res) {
         var data_from_client;
         var roomName;
@@ -29,11 +25,9 @@ module.exports = {
     },
 
     editors: function(req, res) {
-
         var data_from_client;
         var roomName;
         data_from_client = req.params.all();
-        //console.log(data_from_client);
         var socketId = sails.sockets.id(req.socket);
 
         if (data_from_client && data_from_client['roomName']) {
@@ -48,27 +42,21 @@ module.exports = {
 
         if (req.isSocket && req.method === 'POST') {
             username_val = req.param('username');
-            user.find().where({
+            User.find().where({
                 username: username_val
             }).exec(function(err1, foundUser) {
                 if (err1) {
-                    //console.log('Error to query User');
-                    //console.log(err1);
+                    console.error(err1);
                 } else {
                     if (foundUser.length == 0) {
                         return res.send('There is not user with this username: ' + username_val);
                     }
-                    //console.log('Success user query');
-                    //console.log(foundUser.length);
                     MockupEditor.find().where({
                         username: username_val
                     }).exec(function(err2, foundLogin) {
                         if (err2) {
-                            //console.log('Error to query MockupEditor');
-                            console.log(err2);
+                            console.error(err2);
                         } else {
-                            //console.log('Success MockupEditor query');
-                            //console.log(foundLogin.length);
                             if (foundLogin.length == 0) {
                                 MockupEditor.create({
                                     userId: foundUser[0].id,
@@ -78,14 +66,14 @@ module.exports = {
                                     roomName: roomName
                                 }).exec(function(err3, createdLog) {
                                     if (err3) {
-                                        console.log(err3);
+                                        console.error(err3);
                                     } else {
-                                        MockupEditor.publishCreate(_.omit(createdLog, 'online'), req );
-                                        SocketManager.create(
-                                            {socketId: socketId, objectName: 'MockupEditor'}).exec(
+                                        MockupEditor.publishCreate(_.omit(createdLog, 'online'), req);
+                                        SocketManager.create({ socketId: socketId, objectName: 'MockupEditor' }).exec(
                                             function(err_sm, created_sm) {
                                                 if (err_sm) {
-                                                    console.log('Error to SocketManager creating');
+                                                    console.error(err_sm);
+
                                                 }
                                             });
                                     }
@@ -101,20 +89,16 @@ module.exports = {
                                 }).exec(function afterwards(err, updated) {
 
                                     if (err) {
-                                        //console.log('Error to update MockupEditor');
+                                        console.error(err);
                                         return res.send('failed');
                                     }
                                     // this source code is duplicated, remove the socketManager created maybe notify that the 
-                                    SocketManager.create(
-                                            {socketId: socketId, objectName: 'MockupEditor'}).exec(
-                                            function(err_sm, created_sm) {
-                                                if (err_sm) {
-                                                    console.log('Error to SocketManager creating');
-                                                }
-                                                console.log('created SocketManager');
-                                                console.log(created_sm)
-                                            });
-                                    //console.log('The status of the MockupEditor is ' + updated[0].online);
+                                    SocketManager.create({ socketId: socketId, objectName: 'MockupEditor' }).exec(
+                                        function(err_sm, created_sm) {
+                                            if (err_sm) {
+                                                console.log('Error to SocketManager creating');
+                                            }
+                                        });
                                     MockupEditor.publishUpdate(updated[0].id, {
                                         online: updated[0].online,
                                         username: updated[0].username,
@@ -125,7 +109,6 @@ module.exports = {
                                     });
                                     return res.send(updated[0]);
                                 });
-                                //console.log('The record has been updated');
                             }
                         }
                     });
@@ -140,13 +123,12 @@ module.exports = {
     logout: function(req, res) {
         if (req.isSocket) {
             username_val = req.param('username');
-            //console.log(username_val);
-            user.find().where({
+            User.find().where({
                 username: username_val
             }).exec(function(err1, foundLogin) {
                 if (err1) {
-                    //console.log('Error to query User');
-                    //console.log(err1);
+                    console.error(err1);
+                    return res.send('Logout failed');
                 } else if (foundLogin.length > 0) {
                     MockupEditor.update({
                         userId: foundLogin[0].id
@@ -154,18 +136,16 @@ module.exports = {
                         online: false
                     }).exec(function afterwards(err, updated) {
                         if (err) {
-                            //console.log('Error to put logout the user');
                             return res.send('error');
                         }
                         MockupEditor.publishUpdate(updated[0].id, {
                             offline: !updated[0].online,
                             username: updated[0].username
                         });
-                        ////sails.sockets.broadcast('MockupEditor', { value: updated[0] });
                         return res.send(updated[0]);
                     });
                 } else {
-                    return res.send('');
+                    return res.send('User Not found to logout');
                 }
             });
         }

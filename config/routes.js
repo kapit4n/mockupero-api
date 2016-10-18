@@ -40,7 +40,6 @@ module.exports.routes = {
     'GET /login': {view: 'login'},
     'POST /login': 'AuthController.login',
     'POST /user/avatar': 'UserController.uploadAvatar',
-    'GET /user/avatar': 'UserController.avatar',
     '/logout': 'AuthController.logout',
     'GET /signup': {view: 'signup'}
     /***************************************************************************

@@ -39,6 +39,7 @@ module.exports.routes = {
     'GET /project/projectPermission': 'ProjectController.projectPermission',
     'GET /login': {view: 'login'},
     'POST /login': 'AuthController.login',
+    'POST /user/avatar': 'UserController.uploadAvatar',
     '/logout': 'AuthController.logout',
     'GET /signup': {view: 'signup'}
     /***************************************************************************

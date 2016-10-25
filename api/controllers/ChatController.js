@@ -9,7 +9,6 @@ module.exports = {
         var data_from_client;
         var email;
         data_from_client = req.params.all();
-        console.log(data_from_client);
         if (data_from_client && data_from_client['email']) {
             email = data_from_client['email'];
         }
@@ -20,9 +19,9 @@ module.exports = {
             // So add new conversation
             Chat.create(data_from_client)
                 .exec(function(error, data_from_client) {
-                    console.log(data_from_client);
                     Chat.publishCreate({
-                        id: data_from_client.id,
+                        id: data_from_client.userId,
+                        userId: data_from_client.userId,
                         message: data_from_client.message,
                         user: data_from_client.user
                     });
@@ -38,4 +37,4 @@ module.exports = {
             return res.send('User subscribed to');
         }
     }
-};  
+};

@@ -34,3 +34,12 @@ mocha test/bootstrap.test.js test/integration/**/*.test.js
 * sails lift
 * http://localhost:1337/
 
+## Docker installation
+
+* docker build -t llll/api .
+* docker run -p 1337:1337 -d llll/api
+* docker logs containerId
+* docker stop  containerId
+* curl -i localhost:1337
+
+

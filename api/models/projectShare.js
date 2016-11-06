@@ -18,6 +18,5 @@ module.exports = {
         permission: {
             model: 'permission'
         }
-
     }
 };

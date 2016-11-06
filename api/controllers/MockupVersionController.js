@@ -11,12 +11,11 @@ module.exports = {
         if (req.isSocket && req.method === 'POST') {
             MockupVersion.create(versionRecord)
                 .exec(function(error, created1) {
-                    console.log(created1);
                     MockupVersion.publishCreate({
                         id: created1.id,
-                        mockupId: created1.mockupId,
+                        mockup: created1.mockup,
                         number: created1.number,
-                        username: created1.username,
+                        user: created1.user,
                         action: created1.action,
                         message: created1.message
                     });

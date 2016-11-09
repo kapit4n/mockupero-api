@@ -15,12 +15,12 @@ module.exports = {
         var base64DataPublic = img.replace(/^data:image\/png;base64,/, "");
         require("fs").writeFile('assets/images/' + params.mockupId + ".png", base64DataAssets, 'base64', function(err) {
           if (err) {
-            console.log(err);
+            console.error(err);
           }
         });
         require("fs").writeFile('.tmp/public/images/' + params.mockupId + ".png", base64DataPublic, 'base64', function(err) {
           if (err) {
-            console.log(err);
+            console.error(err);
           }
         });
         return res.send('uploaded');

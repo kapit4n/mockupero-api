@@ -14,6 +14,23 @@ module.exports = {
                 .exec(function(error, created1) {
                     fs.createReadStream('assets/images/' + versionRecord.mockup + ".png").pipe(fs.createWriteStream('assets/images/version/' + created1.id + ".png"));
                     fs.createReadStream('assets/images/' + versionRecord.mockup + ".png").pipe(fs.createWriteStream('.tmp/public/images/version/' + created1.id + ".png"));
+
+                    mockupItem.find().where({ mockupId: created1.mockup }).exec(function(err, data) {
+                        if (Array.isArray(data)) {
+                            data.forEach(function(data1) {
+                                delete data1.id;
+                                data1.mockupVersion = created1;
+                                MockupItemVersion.create(data1).exec(function(err2, created2) {
+                                    if (err2) {
+                                        console.error(err2);
+                                    } else {
+                                        console.log('Created Mockup Item Version Successfull');
+                                    }
+                                });
+                            });
+                        }
+                    });
+
                     MockupVersion.publishCreate({
                         id: created1.id,
                         mockup: created1.mockup,

@@ -7,6 +7,33 @@
 
 var fs = require('fs');
 module.exports = {
+    mockupVersionRestore: function(req, res) {
+        var versionRecord = req.params.all();
+        var ss = versionRecord.mockupVersionId;
+        MockupVersion.find().where({ id: versionRecord.mockupVersionId }).exec(function(err, mockupVersion) {
+            mockupItem.destroy({ mockup: mockupVersion.mockup }).exec(function(delErr) {
+                if (delErr) {
+                    return res.negotiate(delErr);
+                }
+                MockupItemVersion.find().where({ mockupVersion: versionRecord.mockupVersionId }).exec(function(err, itemVersionList) {
+                    itemVersionList.forEach(function(item) {
+                        delete item.id;
+                        delete item.mockupVersion;
+                        mockupItem.create(item).exec(function(createErr, createdItem) {
+                            console.log("Created Item restored successfull");
+                        });
+                        item.mockupVersion = mockupVersion;
+                        MockupItemVersion.create(item).exec(function(itemVCreateErr, createItemVersion) {
+                            console.log("Item version was created");
+                        });
+                    });
+                });
+            });
+
+        });
+        return res.send('Created a version');
+
+    },
     saveIt: function(req, res) {
         var versionRecord = req.params.all();
         if (req.isSocket && req.method === 'POST') {
@@ -45,5 +72,8 @@ module.exports = {
             sails.sockets.join(req.socket, roomName);
             return res.send('User subscribed to creation');
         }
+    },
+    saveMockupVersion() {
+
     }
 };

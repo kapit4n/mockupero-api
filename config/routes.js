@@ -37,6 +37,7 @@ module.exports.routes = {
     },
     'GET /project/count': 'ProjectController.count',
     'POST /mockupVersionRestore': 'MockupVersionController.mockupVersionRestore',
+    'POST /deleteMockupVersion': 'MockupVersionController.deleteMockupVersion',
     'GET /project/projectPermission': 'ProjectController.projectPermission',
     'GET /login': {view: 'login'},
     'POST /login': 'AuthController.login',

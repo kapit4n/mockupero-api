@@ -20,11 +20,11 @@ module.exports = {
             };
             delete mockupVersionNew.id;
             MockupVersion.create(mockupVersionNew).exec(function(errCreateVersion2, mockupVersionCreated) {
-                fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('assets/images/' + mockupVersionCreated.id + ".png"));
+                fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('assets/images/version/' + mockupVersionCreated.id + ".png"));
                 fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('.tmp/public/images/version/' + mockupVersionCreated.id + ".png"));
 
                 fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('assets/images/' + mockupVersionCreated.mockup.id + ".png"));
-                fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('.tmp/public/images/version/' + mockupVersionCreated.mockup.id + ".png"));
+                fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('.tmp/public/images/' + mockupVersionCreated.mockup.id + ".png"));
 
                 mockupItem.destroy({ mockup: mockupVersion.mockup.id }).exec(function(delErr, dalated1) {
                     if (delErr) {

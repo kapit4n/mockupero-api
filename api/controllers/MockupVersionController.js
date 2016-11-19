@@ -25,8 +25,7 @@ module.exports = {
 
                 fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('assets/images/' + mockupVersionCreated.mockup.id + ".png"));
                 fs.createReadStream('assets/images/version/' + mockupVersion.id + ".png").pipe(fs.createWriteStream('.tmp/public/images/' + mockupVersionCreated.mockup.id + ".png"));
-
-                mockupItem.destroy({ mockup: mockupVersion.mockup.id }).exec(function(delErr, dalated1) {
+                mockupItem.destroy({ mockupId: mockupVersion.mockup }).exec(function(delErr, dalated1) {
                     if (delErr) {
                         return res.negotiate(delErr);
                     }

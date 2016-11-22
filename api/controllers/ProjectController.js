@@ -8,50 +8,46 @@
 module.exports = {
     count: function(req, res) {
         var params = req.params.all();
-        project.count({
-            name: {
-                'contains': params.name
+        project.find().where(JSON.parse(params.where)).exec(function(err, countProjects) {
+            if (err) {
+                return res.json({ "err": err });
             }
-        }).exec(function(err, num) {
-            return res.json({
-                "count": num
-            });
-        })
+            return res.json({ "count": countProjects.length })
+        });
     },
     projectPermission: function(req, res) {
         var params = req.params.all();
         if (params.projectId && params.userId) {
-            project.find().where(
-                {
-                    id: params.projectId, userId:params.userId
-                }).exec(function(err, foundProject) {
-                    if (foundProject && foundProject.length) {
-                        var ownerPermission = [];
-                        ownerPermission.push({can: 'edit'});
-                        return res.json({
-                                            "permission": ownerPermission
-                                        });
-                    } else {
-                        projectShare.find().where(
-                            {
-                                project: params.projectId,
-                                user: params.userId
-                            }).exec(function(err, sharePermission) {
-                                if (err) {
-                                    console.log(err);
-                                }
-                                if (sharePermission && sharePermission.length) {
-                                    Permission.find().where({id: sharePermission[0].permission}).exec(function(err, foundPer) {
-                                        return res.json({
-                                            "permission": foundPer
-                                        });
-                                    });
-                                } 
+            project.find().where({
+                id: params.projectId,
+                userId: params.userId
+            }).exec(function(err, foundProject) {
+                if (foundProject && foundProject.length) {
+                    var ownerPermission = [];
+                    ownerPermission.push({ can: 'edit' });
+                    return res.json({
+                        "permission": ownerPermission
+                    });
+                } else {
+                    projectShare.find().where({
+                        project: params.projectId,
+                        user: params.userId
+                    }).exec(function(err, sharePermission) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        if (sharePermission && sharePermission.length) {
+                            Permission.find().where({ id: sharePermission[0].permission }).exec(function(err, foundPer) {
+                                return res.json({
+                                    "permission": foundPer
+                                });
                             });
-                    }
-                });
+                        }
+                    });
+                }
+            });
         } else {
-             return res.json({
+            return res.json({
                 "permission": 0
             });
         }

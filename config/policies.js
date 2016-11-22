@@ -51,6 +51,30 @@ module.exports.policies = {
     '*': 'isAuthenticated'
   },
 
+  'ProjectController': {
+    '*': 'isAuthenticated'
+  },
+
+  'MockupController': {
+    '*': 'isAuthenticated'
+  },
+
+  'CommentController': {
+    '*': 'isAuthenticated'
+  },
+
+  'ChatController': {
+    '*': 'isAuthenticated'
+  },
+
+  'MockupItemController': {
+    '*': 'isAuthenticated'
+  },
+
+  'UserController': {
+    '*': 'isAuthenticated'
+  },
+
 	// RabbitController: {
 
 		// Apply the `false` policy as the default for all of RabbitController's actions

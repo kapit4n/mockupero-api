@@ -36,10 +36,13 @@ module.exports.routes = {
         view: 'homepage'
     },
     'GET /project/count': 'ProjectController.count',
+    'POST /mockupVersionRestore': 'MockupVersionController.mockupVersionRestore',
+    'POST /deleteMockupVersion': 'MockupVersionController.deleteMockupVersion',
     'GET /project/projectPermission': 'ProjectController.projectPermission',
     'GET /login': {view: 'login'},
     'POST /login': 'AuthController.login',
     'POST /user/avatar': 'UserController.uploadAvatar',
+    'POST /mockupItem/saveAll': 'MockupItemController.saveAll',
     '/logout': 'AuthController.logout',
     'GET /signup': {view: 'signup'}
     /***************************************************************************

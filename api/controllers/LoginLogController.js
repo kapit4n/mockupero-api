@@ -18,20 +18,14 @@ module.exports = {
                 return res.send('Not found user bb');
             }
             if (err1) {
-                //console.log(('Error to query User');
                 console.error(err1);
             } else {
-                //console.log(('Success user query');
-                //console.log((foundUser.length);
                 LoginLog.find().where({
                     username: username_val
                 }).exec(function(err2, foundLogin) {
                     if (err2) {
-                        //console.log(('Error to query loginLog');
                         console.error(err2);
                     } else {
-                        //console.log(('Success LoginLog query');
-                        //console.log((foundLogin.length);
                         if (foundLogin.length == 0) {
                             LoginLog.create({
                                 userId: foundUser[0].id,
@@ -39,8 +33,6 @@ module.exports = {
                                 online: true,
                                 socketId: socketId
                             }).exec(function(err3, createdLog) {
-                                //console.log((err3);
-                                //console.log((createdLog);
                                 return res.send(createdLog[0]);
                             });
                         } else {
@@ -50,15 +42,12 @@ module.exports = {
                                 online: true
                             }).exec(function afterwards(err, updated) {
                                 if (err) {
-                                    //console.log(('Error to put online the user');
                                     return res.send('failed');
                                 }
-                                console.log('The status of the loginLog is ' + updated[0].online);
-                                LoginLog.publishUpdate(updated[0].id, {online: updated[0].online, username: updated[0].username});
+                                LoginLog.publishUpdate(updated[0].id, { online: updated[0].online, username: updated[0].username });
                                 sails.sockets.broadcast('loginLog', { value: updated[0] });
                                 return res.send(updated[0]);
                             });
-                            //console.log(('The record has been updated');
                         }
                     }
                 });
@@ -66,9 +55,8 @@ module.exports = {
         });
     },
     logout: function(req, res) {
-        if(req.isSocket) {
+        if (req.isSocket) {
             username_val = req.param('username');
-            //console.log((username_val);
             User.find().where({
                 username: username_val
             }).exec(function(err1, foundLoginList) {
@@ -84,14 +72,12 @@ module.exports = {
                             if (err) {
                                 return res.send('error');
                             }
-                            // this event is not working ok
-                            LoginLog.publishUpdate(updated.id, {online: false, username: updated.username});
+                            LoginLog.publishUpdate(updated.id, { online: false, username: updated.username });
                             sails.sockets.broadcast('loginLog', { value: updated });
                             return res.send(updated);
                         });
                     }
-                }
-                else {
+                } else {
                     return res.send('');
                 }
             });

@@ -18,8 +18,7 @@ module.exports = {
         },
         items: {
             collection: 'PermissionItem',
-            via: 'group',
-            dominant: true
+            via: 'group'
         }
     }
 };

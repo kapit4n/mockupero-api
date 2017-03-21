@@ -11,6 +11,9 @@ module.exports = {
         name: {
             type: 'string'
         },
+        action: {
+            type: 'string'
+        },
         model: {
             type: 'string'
         },

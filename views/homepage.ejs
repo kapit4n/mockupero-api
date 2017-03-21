@@ -141,6 +141,82 @@ setTimeout(function sunrise () {
                         <li>
                             <article>
                                 <header>
+                                    <h3><a target="_blank" href="/permissionGroup"><code>/permissionGroup</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of permissionGroups</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionGroup"><code>/permissionGroup</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:POST</p>
+                                <p><b>Description</b>: Save permissionGroup</p>
+                                <p><b>Body Example</b>: {"name": "Administrator", "description": "Group of permission for the administration"}</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionItem"><code>/permissionItem</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of permissionItems</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionItem"><code>/permissionItem</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:POST</p>
+                                <p><b>Description</b>: Save permissionItem</p>
+                                <p><b>Body Example</b>: {"name": "Create Project", "model": "project", "description": "Permission to create projects"}</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionGroupItem"><code>/permissionGroupItem</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of permissionGroupItems</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionGroupItem"><code>/permissionGroupItem</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:POST</p>
+                                <p><b>Description</b>: Save permissionGroupItem</p>
+                                <p><b>Body Example</b>: {"permissionGroup": "782945jkhjksdyf789gdf", "permissionItem": "7yui78945jkhjksdyf789gdf"}</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionGroupUser"><code>/permissionGroupUser</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:GET</p>
+                                <p><b>Description</b>: Return the list of permissionGroupUsers</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a target="_blank" href="/permissionGroupUser"><code>/permissionGroupUser</code></a></h3>
+                                </header>
+                                <p><b>Method</b>:POST</p>
+                                <p><b>Description</b>: Save permissionGroupUser</p>
+                                <p><b>Body Example</b>: {"permissionGroup": "782945jkhjksdyf789gdf", "user": "7yui78945jkhjksdyf789gdf"}</p>
+                            </article>
+                        </li>
+                        <li>
+                            <article>
+                                <header>
                                     <h3><a target="_blank" href="/projectShare"><code>/projectShare</code></a></h3>
                                 </header>
                                 <p><b>Method</b>:GET</p>

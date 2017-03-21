@@ -15,6 +15,11 @@ module.exports = {
         description: {
             type: 'string',
             defaultsTo: ''
+        },
+        items: {
+            collection: 'PermissionItem',
+            via: 'group',
+            dominant: true
         }
     }
 };

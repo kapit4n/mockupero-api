@@ -7,7 +7,7 @@
 
 module.exports = {
 
-  	attributes: {
+    attributes: {
         name: {
             type: 'string'
         },
@@ -17,7 +17,10 @@ module.exports = {
         description: {
             type: 'string',
             defaultsTo: ''
+        },
+        group: {
+            collection: 'PermissionGroup',
+            via: 'items'
         }
-  	}
+    }
 };
-

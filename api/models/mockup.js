@@ -28,6 +28,9 @@ module.exports = {
         project: {
             model: 'project'
         },
+        owner: {
+            model: 'user'
+        },
         feature: {
           model: 'feature'
         }

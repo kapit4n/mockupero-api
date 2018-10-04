@@ -62,7 +62,7 @@ module.exports.connections = {
     port: 27017,
     user: 'accountUser',
     password: 'password',
-    database: 'test'
+    database: 'mockupero'
   },
 
   /***************************************************************************
